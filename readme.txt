@@ -16,10 +16,10 @@ Cache widget output.
 1. Upload `voce-widget-cache` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Usage: 
-```
-$widget_cache = Voce_Widget_Cache::initialize();
+
+$widget_cache = Voce_Widget_Cache::GetInstance();
 $widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
-```
+
 
 == Frequently Asked Questions ==
 

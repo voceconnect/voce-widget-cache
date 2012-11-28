@@ -8,29 +8,32 @@
   License: GPL2
 */
 
-/**
- * Cache widget output
- *
- * Usage:
- * $widget_cache = Voce_Widget_Cache::GetInstance();
- * $widget_cache->cache_widget( 'WP_Widget_Links', array( 'load-link-manager.php', 'load-link-add.php', 'load-link.php' ) );
- * $widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
- *
- */
 if(!class_exists('Voce_Widget_Cache')){
+	/**
+	 * Cache widget output
+	 *
+	 * Usage:
+	 * $widget_cache = Voce_Widget_Cache::GetInstance();
+	 * $widget_cache->cache_widget( 'WP_Widget_Links', array( 'load-link-manager.php', 'load-link-add.php', 'load-link.php' ) );
+	 * $widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
+	 *
+	 */
 	class Voce_Widget_Cache {
 
 		private static $instance;
 		private $widget_classes = array();
 		public $widget_ids = array();
 
+		/**
+		 * @constructor
+		 */
 		public function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
 		}
 
 		/**
-		* Create a singleton instance
-		*/
+		 * Create a singleton instance
+		 */
 		public static function GetInstance() {
 			if( ! isset( self::$instance ) ) {
 				$class = __CLASS__;
@@ -40,8 +43,8 @@ if(!class_exists('Voce_Widget_Cache')){
 		}
 
 		/**
-		* Set the widget callbacks to custom functions
-		*/
+		 * Set the widget callbacks to custom functions
+		 */
 		public function init() {
 			global $wp_registered_widgets, $wp_registered_widget_updates;
 
@@ -68,9 +71,9 @@ if(!class_exists('Voce_Widget_Cache')){
 		}
 
 		/**
-		* @param $widget_class name of widget class you want to cache
-		* @param $hooks an array of hooks to clear the widget from the cache
-		*/
+		 * @param $widget_class name of widget class you want to cache
+		 * @param $hooks an array of hooks to clear the widget from the cache
+		 */
 		public function cache_widget( $widget_class, array $hooks ) {
 			$this->widget_classes[] = $widget_class;
 			foreach( $hooks as $hook ){
@@ -80,9 +83,9 @@ if(!class_exists('Voce_Widget_Cache')){
 		}
 
 		/**
-		* Internal use only - called when widget is updated and used to
-		* delete the cache for the widget that was updated.
-		*/
+		 * Internal use only - called when widget is updated and used to
+		 * delete the cache for the widget that was updated.
+		 */
 		public function _update_cb( $params, $id, $widget_id ) {
 			global $wp_registered_widget_updates;
 
@@ -95,15 +98,13 @@ if(!class_exists('Voce_Widget_Cache')){
 		}
 
 		/**
-		* Internal use only - called when widget is displayed.
-		* Cache the output
-		*/
+		 * Internal use only - called when widget is displayed.
+		 * Cache the output
+		 */
 		public function _display_cb( $args, $params, $id ) {
-			global $wp_registered_widgets;
-
-			$callback = $wp_registered_widgets[$id]['callback_original'];
-
 			if( ! ( $output = get_transient( $id ) ) ) {
+				global $wp_registered_widgets;
+				$callback = $wp_registered_widgets[$id]['callback_original'];
 				if ( ! is_callable( $callback ) ){
 					return;
 				}
@@ -117,9 +118,9 @@ if(!class_exists('Voce_Widget_Cache')){
 		}
 
 		/**
-		* Delete all cached widgets of a particular class
-		* @param $widget_class a widget class name
-		*/
+		 * Delete all cached widgets of a particular class
+		 * @param $widget_class a widget class name
+		 */
 		public function delete_cached_widgets( $widget_class ) {
 			foreach( $this->widget_ids[$widget_class] as $widget ){
 				$this->delete( $widget );
@@ -127,9 +128,9 @@ if(!class_exists('Voce_Widget_Cache')){
 		}
 
 		/**
-		* Delete a single cached widget
-		* @param $widget_id a widget id
-		*/
+		 * Delete a single cached widget
+		 * @param $widget_id a widget id
+		 */
 		private function delete( $widget_id ) {
 			delete_transient( $widget_id );
 		}
