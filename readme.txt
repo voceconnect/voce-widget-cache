@@ -11,6 +11,14 @@ Cache widget output.
 
 == Description ==
 
+Add a widget to the cache and designate which actions the cache gets flushed on.
+
+```
+$widget_cache = Voce_Widget_Cache::GetInstance();
+$widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
+```
+
+
 == Installation ==
 
 1. Upload `voce-widget-cache` to the `/wp-content/plugins/` directory
