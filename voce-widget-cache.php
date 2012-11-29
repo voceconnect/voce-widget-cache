@@ -3,7 +3,7 @@
   Plugin Name: Voce Widget Cache
   Plugin URI: http://voceconnect.com
   Description: Serve cached WordPress Widgets.
-  Version: 1.0
+  Version: 1.1
   Author: John Ciacia, Mark Parolisi
   License: GPL2
 */
