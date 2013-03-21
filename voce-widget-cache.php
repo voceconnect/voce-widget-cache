@@ -3,7 +3,7 @@
   Plugin Name: Voce Widget Cache
   Plugin URI: http://voceconnect.com
   Description: Serve cached WordPress Widgets.
-  Version: 1.1
+  Version: 1.2
   Author: John Ciacia, Mark Parolisi
   License: GPL2
 */
@@ -74,10 +74,12 @@ if(!class_exists('Voce_Widget_Cache')){
 		 * @param $widget_class name of widget class you want to cache
 		 * @param $hooks an array of hooks to clear the widget from the cache
 		 */
-		public function cache_widget( $widget_class, array $hooks ) {
+		public function cache_widget( $widget_class, array $hooks = array() ) {
 			$this->widget_classes[] = $widget_class;
-			foreach( $hooks as $hook ){
-				add_action( "$hook", create_function( '', "Voce_Widget_Cache::GetInstance()->delete_cached_widgets('$widget_class');" ) );
+			if ( ! empty( $hooks ) ) {	
+				foreach( $hooks as $hook ){
+					add_action( "$hook", create_function( '', "Voce_Widget_Cache::GetInstance()->delete_cached_widgets('$widget_class');" ) );
+				}
 			}
 			return $this;
 		}
