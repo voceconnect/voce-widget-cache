@@ -1,0 +1,53 @@
+Voce Widget Cache
+==================
+
+Contributors: johnciacia, markparolisi, voceplatforms  
+Tags: widget, cache, caching, performance  
+Requires at least: 3.3  
+Tested up to: 3.5  
+Stable tag: 1.2  
+License: GPLv2 or later  
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+## Description
+Adds ability to easily cache widget output for better performance. This plugin does not cache widgets automatically! You must define which widgets get cached.
+
+## Installation
+
+### As standard plugin:
+> See [Installing Plugins](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
+
+### As theme or plugin dependency:
+> After dropping the plugin into the containing theme or plugin, add the following:
+
+	if( ! class_exists( 'Voce_Widget_Cache' ) ) {
+		require_once( $path_to_voce_widget_cache . '/voce-widget-cache.php' );
+	}
+
+## Usage
+
+#### Example
+
+Add a widget to the cache and designate which actions the cache gets flushed on.
+
+	$widget_cache = Voce_Widget_Cache::GetInstance();
+	$widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
+	$widget_cache->cache_widget( 'WP_Widget_Recent_Posts' );
+
+#Frequently Asked Questions
+
+* **I installed the plugin but nothing is happening**
+	* The caching is not automatic. Refer to the documentation to see how to implement caching on widgets.
+* **How can I verify my widgets are being cached?**
+	* You could use a plugin like WPDB Profiling
+
+#Changelog
+
+**1.2**  
+*Hooks to clear a widget's cache are now optional.*
+
+**1.1**  
+*Updated documentation.*
+
+**1.0**  
+*Initial version.*
