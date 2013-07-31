@@ -19,20 +19,22 @@ Adds ability to easily cache widget output for better performance. This plugin d
 
 ### As theme or plugin dependency:
 > After dropping the plugin into the containing theme or plugin, add the following:
-
-	if( ! class_exists( 'Voce_Widget_Cache' ) ) {
-		require_once( $path_to_voce_widget_cache . '/voce-widget-cache.php' );
-	}
+```php
+if( ! class_exists( 'Voce_Widget_Cache' ) ) {
+	require_once( $path_to_voce_widget_cache . '/voce-widget-cache.php' );
+}
+```
 
 ## Usage
 
 #### Example
 
 Add a widget to the cache and designate which actions the cache gets flushed on.
-
-	$widget_cache = Voce_Widget_Cache::GetInstance();
-	$widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
-	$widget_cache->cache_widget( 'WP_Widget_Recent_Posts' );
+```php
+$widget_cache = Voce_Widget_Cache::GetInstance();
+$widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
+$widget_cache->cache_widget( 'WP_Widget_Recent_Posts' );
+```
 
 #Frequently Asked Questions
 
