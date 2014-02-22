@@ -124,8 +124,10 @@ if(!class_exists('Voce_Widget_Cache')){
 		 * @param $widget_class a widget class name
 		 */
 		public function delete_cached_widgets( $widget_class ) {
-			foreach( $this->widget_ids[$widget_class] as $widget ){
-				$this->delete( $widget );
+			if( is_array(  $this->widget_ids[$widget_class] ) ){
+				foreach( $this->widget_ids[$widget_class] as $widget ){
+					$this->delete( $widget );
+				}
 			}
 		}
 
