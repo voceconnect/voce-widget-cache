@@ -50,7 +50,7 @@ if(!class_exists('Voce_Widget_Cache')){
 
 			//change the display callback for widgets to a custom callback
 			foreach( $wp_registered_widgets as $id => $widget ) {
-				if( in_array( get_class( $wp_registered_widgets[$id]['callback'][0] ), $this->widget_classes ) ) {
+				if( is_object($wp_registered_widgets[$id]['callback'][0] ) && in_array( get_class($wp_registered_widgets[$id]['callback'][0] ), $this->widget_classes ) ) {
 					$this->widget_ids[get_class( $wp_registered_widgets[$id]['callback'][0] )][] = $id;
 					$wp_registered_widgets[$id]['callback_original'] = $wp_registered_widgets[$id]['callback'];
 					$wp_registered_widgets[$id]['callback'] = array( $this, '_display_cb' );
@@ -60,7 +60,7 @@ if(!class_exists('Voce_Widget_Cache')){
 
 			//change the update callback for widgets to a custom callback
 			foreach( $wp_registered_widget_updates as $id => $widget ) {
-				if( in_array( get_class( $wp_registered_widget_updates[$id]['callback'][0] ), $this->widget_classes ) ) {
+				if( is_object ( $wp_registered_widget_updates[$id]['callback'][0] ) && in_array( get_class( $wp_registered_widget_updates[$id]['callback'][0] ), $this->widget_classes ) ) {
 					$widget_id = $wp_registered_widget_updates[$id]['callback'][0]->id;
 					$wp_registered_widget_updates[$id]['callback_original'] = $wp_registered_widget_updates[$id]['callback'];
 					$wp_registered_widget_updates[$id]['callback'] = array( $this, '_update_cb' );
