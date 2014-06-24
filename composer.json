@@ -1,0 +1,20 @@
+{
+    "name": "voceconnect/voce-widget-cache",
+    "description": "Adds ability to easily cache widget output for better performance.",
+    "keywords": ["wordpress", "widget", "cache"],
+    "license": "GPLv2+",
+    "authors": [
+        {
+            "name": "Mark Parolisi",
+            "email": "mark@voceconnect.com"
+        },
+        {
+            "name": "John Ciacia",
+            "email": "john@voceconnect.com"
+        }        
+    ],
+    "type": "library",
+    "autoload": {
+        "files": ["voce-widget-cache.php"]
+    }
+}

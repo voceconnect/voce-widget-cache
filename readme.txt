@@ -3,7 +3,7 @@ Contributors: johnciacia, markparolisi, voceplatforms
 Tags: widget
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,15 +44,17 @@ You could use a plugin like WPDB Profiling
 == Screenshots ==
 
 == Changelog ==
+= 1.4 =
+* Adding composer support
 
 = 1.3 =
-Fix PHP Warning is widget array is not set.
+* Fix PHP Warning is widget array is not set.
 
 = 1.2 =
-Hooks to clear a widget's cache are now optional.
+* Hooks to clear a widget's cache are now optional.
 
 = 1.1 =
-Updated documentation.
+* Updated documentation.
 
 = 1.0 =
 * Initial version.
