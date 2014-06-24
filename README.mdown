@@ -45,7 +45,7 @@ $widget_cache->cache_widget( 'WP_Widget_Recent_Posts' );
 
 #Changelog
 **1.4**  
-*Adding composer support*
+* Adding composer support
 
 **1.3**  
 * Fix PHP Warning is widget array is not set
