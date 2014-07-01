@@ -3,7 +3,7 @@ Contributors: johnciacia, markparolisi, voceplatforms
 Tags: widget
 Requires at least: 3.3
 Tested up to: 3.4
-Stable tag: 1.4
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -44,6 +44,9 @@ You could use a plugin like WPDB Profiling
 == Screenshots ==
 
 == Changelog ==
+= 1.4.1 =
+* Adding Capistrano deploy files
+
 = 1.4 =
 * Adding composer support
 
