@@ -76,7 +76,7 @@ if(!class_exists('Voce_Widget_Cache')){
 		 */
 		public function cache_widget( $widget_class, array $hooks = array() ) {
 			$this->widget_classes[] = $widget_class;
-			if ( ! empty( $hooks ) ) {	
+			if ( ! empty( $hooks ) ) {
 				foreach( $hooks as $hook ){
 					add_action( "$hook", create_function( '', "Voce_Widget_Cache::GetInstance()->delete_cached_widgets('$widget_class');" ) );
 				}
@@ -104,7 +104,13 @@ if(!class_exists('Voce_Widget_Cache')){
 		 * Cache the output
 		 */
 		public function _display_cb( $args, $params, $id ) {
-			if( ! ( $output = get_transient( $id ) ) ) {
+			global $wp_customize;
+			$is_preview = isset($wp_customize) && $wp_customize->is_preview();
+
+			if ( !$is_preview )
+				$output = get_transient( $id );
+
+			if ( empty($output) ) {
 				global $wp_registered_widgets;
 				$callback = $wp_registered_widgets[$id]['callback_original'];
 				if ( ! is_callable( $callback ) ){
@@ -113,7 +119,9 @@ if(!class_exists('Voce_Widget_Cache')){
 				ob_start();
 				call_user_func_array( $callback, func_get_args() );
 				$output = ob_get_clean();
-				set_transient( $id, $output );
+
+				if ( !$is_preview )
+					set_transient( $id, $output );
 			}
 
 			echo $output;
