@@ -2,8 +2,8 @@
 Contributors: johnciacia, markparolisi, voceplatforms
 Tags: widget
 Requires at least: 3.3
-Tested up to: 3.4
-Stable tag: 1.4.1
+Tested up to: 4.0
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ $widget_cache->cache_widget( 'WP_Widget_Recent_Posts' );
 
 1. Upload `voce-widget-cache` to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Usage: 
+3. Usage:
 `
 $widget_cache = Voce_Widget_Cache::GetInstance();
 $widget_cache->cache_widget( 'Archive_Links_Widget', array( 'save_post' ) );
@@ -44,6 +44,9 @@ You could use a plugin like WPDB Profiling
 == Screenshots ==
 
 == Changelog ==
+= 1.5 =
+* Removing cache interaction on customizer preview
+
 = 1.4.1 =
 * Adding Capistrano deploy files
 
